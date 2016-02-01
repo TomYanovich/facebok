@@ -35,14 +35,9 @@
 
 <%
 	if (session.getAttribute("userid") == null) {
-		response.sendRedirect("Login.jsp");
+		response.sendRedirect("LogReg.jsp");
 		return;
 	}
-
-if (session.getAttribute("userid") == null) {
-	response.sendRedirect("Login.jsp");
-	return;
-}
 %>
 </head>
 
@@ -81,7 +76,7 @@ if (session.getAttribute("userid") == null) {
 				</div>
 			</div>
 			<div class="LogOut_Class">
-				<a id="logout" href="Login.jsp?action=logout"> <img
+				<a id="logout" href="LogReg.jsp?action=logout"> <img
 					src="Pics/logout.png" id="logout">
 				</a>
 			</div>
@@ -143,16 +138,12 @@ if (session.getAttribute("userid") == null) {
 						
 				%>
 
-					
 					<script type="text/javascript">
 						var theuser = "<%= user %>";
 						getFullName(theuser); 
 						getPictures(theuser);
 						getOnlineFriendsForUsers(theuser);
-						var isFriend = '<%= request.getParameter("catagory") %>';
-						setAddBtn(isFriend, theuser);
-							
-						
+						isMyFriend(currentUserId, theuser);
 					</script>
 		
 				<%
@@ -169,7 +160,6 @@ if (session.getAttribute("userid") == null) {
 
 	</div>
 	<!-- #wrapper -->
-
 </body>
 
 </html>

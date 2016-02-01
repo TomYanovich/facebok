@@ -13,5 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/Pics/profile1.png"/>
+	<classpathentry kind="lib" path="WebContent/Pics/TheLittleMermaid.png"/>
+	<classpathentry kind="lib" path="WebContent/Pics/little_mermaid.png"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

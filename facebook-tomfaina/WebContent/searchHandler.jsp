@@ -7,9 +7,6 @@
 
 
 <%
-	Queries q = new Queries();
-	String getAllUsers = q.getAllUsers;
-
 	coreservlets.MyConnection con = (coreservlets.MyConnection)session.getAttribute("connection");
 	
 	if(con!=null)
@@ -21,7 +18,7 @@
 			JSONArray usersList = new JSONArray();
 			
 			PreparedStatement ps;
-			ps = con.getConnection().prepareStatement(getAllUsers);
+			ps = con.getConnection().prepareStatement(Queries.getAllUsers);
 			ResultSet rs;
 			ps.setString(1, prefix + "%"); //search friends start with prefix in users table
 			ps.setString(2, userName); // ignore the user from th list in users

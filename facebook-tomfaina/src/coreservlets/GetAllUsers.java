@@ -18,14 +18,14 @@ import org.json.simple.JSONObject;
 /**
  * Servlet implementation class getAllUsers
  */
-@WebServlet("/getAllUsers")
-public class getAllUsers extends HttpServlet {
+@WebServlet("/GetAllUsers")
+public class GetAllUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public getAllUsers() {
+	public GetAllUsers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,43 +46,43 @@ public class getAllUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Queries q = new Queries();
+
 		HttpSession session = request.getSession();
 		coreservlets.MyConnection con = (coreservlets.MyConnection) session.getAttribute("connection");
 
-		if (con != null) {
-			try {
-
-				String user = request.getParameter("userName");
-
-				JSONArray users = new JSONArray();
-
-				PreparedStatement ps;
-				ps = con.getConnection().prepareStatement(q.getUsers);
-				ResultSet rs;
-
-				ps.setString(1, user);
-				ps.setString(2, user);
-				ps.setString(3, user);
-				rs = ps.executeQuery();
-
-				while (rs.next()) {
-					JSONObject userRow = new JSONObject();
-					userRow.put("name", rs.getString("FullName"));
-					userRow.put("user", rs.getString("username"));
-					userRow.put("catagory", rs.getString("Category"));
-					users.add(userRow);
-				}
-
-				// System.out.print(usersList + "\n");
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().print(users);
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
+		if (con == null) {
+			return;
 		}
+		
+		try {
+
+			String current_user = request.getParameter("currentUserId");
+
+			JSONArray usersArray = new JSONArray();
+
+			PreparedStatement ps;
+			ps = con.getConnection().prepareStatement(Queries.getFriends);
+			ResultSet rs;
+
+			ps.setString(1, current_user);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				JSONObject userRow = new JSONObject();
+				userRow.put("name", rs.getString("firstName") + " " + rs.getString("lastName"));
+				userRow.put("user", rs.getString("username"));
+				usersArray.add(userRow);
+			}
+
+			// System.out.print(usersList + "\n");
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(usersArray);
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

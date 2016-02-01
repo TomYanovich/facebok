@@ -77,7 +77,7 @@
 
 			</div>
 			<div class="LogOut_Class">
-				<a id="logout" href="Login.jsp?action=logout" > <img
+				<a id="logout" href="LogReg.jsp?action=logout"> <img
 					src="Pics/logout.png" id="logout" >
 				</a>
 			</div>

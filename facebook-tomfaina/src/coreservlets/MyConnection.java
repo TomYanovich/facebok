@@ -6,11 +6,22 @@ import java.sql.SQLException;
 
 public class MyConnection {
 	private Connection connection;
-	private static final String url = "jdbc:mysql://localhost:3306/FacebookDB" ; 
+	
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	
+	private static final String DBMS = "mysql";
+	private static final String CONNECTOR = "jdbc"; 
+	private static final String IP = "localhost"; 
+	private static final String PORT = "3306" ; 
+	private static final String DB = "FacebookDB";
+	private static final String DB_LINK = CONNECTOR +":" + DBMS + "://" + IP + ":" + PORT + "/" + DB;
+
+	private static final String USERNAME = "root";
+	private static final String PASSWORD = "1234";
 
 	static{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");  //register with DriverManager
+			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} 
@@ -19,12 +30,11 @@ public class MyConnection {
 	
 	public MyConnection() throws SQLException, Exception {
 				
-		connection = DriverManager.getConnection(url, "root", "1234");
+		connection = DriverManager.getConnection(DB_LINK, USERNAME, PASSWORD);
 	}
 
 
 	public Connection getConnection() {
-		//System.out.println(connection.toString());
 		return connection;
 	}
 
@@ -36,7 +46,7 @@ public class MyConnection {
 	public void closeConnection() {
 		try {
 			connection.close();
-			System.out.println("Connection closed!");
+			System.out.println("Connection closed!--");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

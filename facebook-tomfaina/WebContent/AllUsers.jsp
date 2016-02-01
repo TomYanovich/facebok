@@ -92,7 +92,7 @@ if (session.getAttribute("userid") == null) {
 				<div id="searchfield">
 					<form>
 						<input type="text" placeholder="Search Friends" class="biginput"
-							onkeypress="getAllUsers(currentUserId);" id="autocomplete">
+							onkeypress="searchFriends(currentUserId);" id="autocomplete">
 					</form>
 				</div>
 				<!-- @end #searchfield -->
@@ -135,7 +135,7 @@ if (session.getAttribute("userid") == null) {
 
 	</div>
 	<!-- #wrapper -->
-<script>getDataForAllUsers();</script>
+<script>getAllUsers()</script>
 </body>
 
 </html>

@@ -14,14 +14,11 @@
 			flag = false;
 		if(!passwordCheck(cfmPassword,password,cfmPasswordErr,passErr))
 			flag = false;
-
-		
-
 		if(flag == true){		
 			if(!checkDB(userRegister, userErr))
 				dbCheckResult = false;
 		}
-		
+
 		if(flag == true && dbCheckResult == true)
 			return true;
 		
